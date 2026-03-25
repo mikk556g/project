@@ -32,7 +32,7 @@ optimizer:
 scheduler:
   name: OneCycleLR
   max_lr: 0.0001
-  epochs: 15
+  epochs: 20
   pct_start: 0.1
   anneal_strategy: cos
 
