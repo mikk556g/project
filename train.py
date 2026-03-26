@@ -159,7 +159,9 @@ with mlflow.start_run(run_name="training"):
     # Logging model parameters and flops by running a single tensor, consistent with the shape of the images,
     # through the model.
     dummy_input = torch.randn(1, 3, 224, 224).to(device)
-    flops, params = profile(model, inputs=(dummy_input,))
+    model.eval()
+    with torch.no_grad():
+        flops, params = profile(model, inputs=(dummy_input,))
     mlflow.log_metric("model_params", params)
     mlflow.log_metric("model_flops", flops)
 
